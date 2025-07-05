@@ -2,5 +2,5 @@
 -- This query creates the table only if it does not already exist
 CREATE TABLE IF NOT EXISTS first_table (
     id INT,
-    nam VARCHAR(256)
+    name VARCHAR(256)
 );
