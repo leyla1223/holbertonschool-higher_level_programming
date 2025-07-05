@@ -1,8 +1,16 @@
 -- Task: List all genres with number of shows linked (no genres with zero shows)
 -- Display genre name as "genre", count as "number_of_shows"
--- Sorted descending by number_of_shows
-SELECT g.name AS genre, COUNT(tsg.tv_show_id) AS number_of_shows
-FROM genres g
-JOIN tv_show_genres tsg ON g.id = tsg.genre_id
-GROUP BY g.name
-ORDER BY number_of_shows DESC;
+
+SELECT
+  tv_genres.name AS genre,
+  COUNT(tv_show_genres.show_id) AS number_of_shows
+FROM
+  tv_genres
+JOIN
+  tv_show_genres ON tv_genres.id = tv_show_genres.genre_id
+GROUP BY
+  tv_genres.id
+HAVING
+  number_of_shows > 0
+ORDER BY
+  number_of_shows DESC;
