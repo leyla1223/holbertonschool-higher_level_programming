@@ -1,7 +1,9 @@
 -- Task: List all Comedy shows sorted by title ascending
-SELECT ts.title
-FROM tv_shows ts
-JOIN tv_show_genres tsg ON ts.id = tsg.tv_show_id
-JOIN genres g ON tsg.genre_id = g.id
-WHERE g.name = 'Comedy'
-ORDER BY ts.title ASC;
+-- Task: Here it comes
+
+SELECT tv_shows.title
+FROM tv_shows
+JOIN tv_show_genres ON tv_shows.id = tv_show_genres.show_id
+JOIN tv_genres ON tv_show_genres.genre_id = tv_genres.id
+WHERE tv_genres.name = 'Comedy'
+ORDER BY tv_shows.title ASC;
