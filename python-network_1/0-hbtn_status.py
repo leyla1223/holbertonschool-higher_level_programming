@@ -1,32 +1,30 @@
 #!/usr/bin/python3
 """
-Fetches https://intranet.hbtn.io/status using urllib and displays
-the response body type, raw content, and utf8 decoded content.
+This script fetches https://intranet.hbtn.io/status using urllib,
+adds the required 'cfclearance' header to bypass firewall,
+and prints the response in a specific format.
 """
 
-
-from urllib.request import urlopen
-
+from urllib.request import Request, urlopen
 
 def main():
     """
-    Sends a GET request to the given URL, reads the response,
-    and prints the type, raw content, and UTF-8 decoded content
-    of the body.
+    Main function that sends a GET request to the given URL with custom headers
+    and displays information about the response body.
     """
     url = "https://intranet.hbtn.io/status"
+    headers = {
+        "cfclearance": "true"  # Required header to bypass firewall
+    }
 
-    # Open the URL and fetch the response
-    with urlopen(url) as response:
-        # Read the response body in bytes
+    req = Request(url, headers=headers)
+
+    with urlopen(req) as response:
         body = response.read()
-
-        # Print information about the response
         print("Body response:")
-        print("\t- type: {}".format(type(body)))          # Print type of response
-        print("\t- content: {}".format(body))             # Print raw bytes content
-        print("\t- utf8 content: {}".format(body.decode('utf-8')))  # Print decoded content
-
+        print("\t- type: {}".format(type(body)))
+        print("\t- content: {}".format(body))
+        print("\t- utf8 content: {}".format(body.decode('utf-8')))
 
 if __name__ == "__main__":
     main()
