@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Fetches https://intranet.hbtn.io/status using requests package
-and displays the body of the response with its type and content.
+and displays the response content with proper formatting.
 """
 
 
@@ -10,7 +10,11 @@ import requests
 
 if __name__ == "__main__":
     url = "https://intranet.hbtn.io/status"
-    response = requests.get(url)
+    headers = {
+        'cfclearance': 'true'
+    }
+
+    response = requests.get(url, headers=headers)
     content = response.text
 
     print("Body response:")
