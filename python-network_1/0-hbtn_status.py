@@ -5,7 +5,9 @@ adds the required 'cfclearance' header to bypass firewall,
 and prints the response in a specific format.
 """
 
+
 from urllib.request import Request, urlopen
+
 
 def main():
     """
@@ -25,6 +27,7 @@ def main():
         print("\t- type: {}".format(type(body)))
         print("\t- content: {}".format(body))
         print("\t- utf8 content: {}".format(body.decode('utf-8')))
+
 
 if __name__ == "__main__":
     main()
